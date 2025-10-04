@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Login from "./pages/Login";
+import StudentRegister from "./pages/StudentRegister";
+import AdminRegister from "./pages/AdminRegister";
+//import RegisterLanding from "./pages/RegisterLanding";
+import Home from "./pages/Home";
+import SubmitComplaint from "./pages/SubmitComplaint";
+import ViewStatus from "./pages/ViewStatus";
+import Feedback from "./pages/Feedback";
+import Navbar from "./components/Navbar";
+import HomeNavbar from "./components/HomeNavbar";
 
-function App() {
+function AppWrapper() {
+  const location = useLocation();
+
+  const showNavbar = location.pathname.startsWith("/register");
+  const showHomeNavbar = location.pathname.startsWith("/home") || location.pathname.startsWith("/submit-complaint") || location.pathname.startsWith("/view-status") || location.pathname.startsWith("/feedback");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {showNavbar && <Navbar />}
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<StudentRegister />} />
+        <Route path="/register/student" element={<StudentRegister />} />
+        <Route path="/register/admin" element={<AdminRegister />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/submit-complaint" element={<SubmitComplaint />} />
+        <Route path="/view-status" element={<ViewStatus />} />
+        <Route path="/feedback" element={<Feedback />} />
+      </Routes>
+      </>
+
   );
 }
-
-export default App;
+export default function App(){
+return (
+    <Router>
+      <AppWrapper />
+    </Router>
+  );
+}
