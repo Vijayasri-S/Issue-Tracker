@@ -10,6 +10,9 @@ import ViewStatus from "./pages/ViewStatus";
 import Feedback from "./pages/Feedback";
 import Navbar from "./components/Navbar";
 import HomeNavbar from "./components/HomeNavbar";
+import AdminNavbar from "./components/AdminNavbar"; 
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminFeedbacks from "./pages/AdminFeedbacks";  
 
 function AppWrapper() {
   const location = useLocation();
@@ -28,6 +31,8 @@ function AppWrapper() {
         <Route path="/submit-complaint" element={<SubmitComplaint />} />
         <Route path="/view-status" element={<ViewStatus />} />
         <Route path="/feedback" element={<Feedback />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/admin-feedbacks" element={<AdminFeedbacks />} />
       </Routes>
       </>
 
